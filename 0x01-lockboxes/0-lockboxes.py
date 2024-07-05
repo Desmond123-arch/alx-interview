@@ -1,4 +1,4 @@
-#!/usr/bin/pyton3 
+#!/usr/bin/python3 
 """ Lockboxes interview prep """
 def join(T, R):
     """ Join function """
