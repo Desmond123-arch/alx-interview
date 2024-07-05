@@ -1,3 +1,5 @@
+#!/usr/bin/pyton3 
+""" Lockboxes interview prep """
 def join(T, R):
     """ Join function """
     res = []
