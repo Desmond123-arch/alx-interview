@@ -1,4 +1,6 @@
 #!/usr/bin/python3
+""" Min Operations function """
+
 
 def minOperations(n) -> int:
     """ Minimum operations to do copy and past """
@@ -16,5 +18,4 @@ def minOperations(n) -> int:
             min_operatons += 1
         current_length += clipboard
         min_operations += 1
-
-return min_operations
+    return min_operations
