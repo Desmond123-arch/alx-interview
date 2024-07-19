@@ -46,7 +46,7 @@ except KeyboardInterrupt:
     print(f"File size: {total_size}")
     for key in sorted(status_dicts.keys()):
         print(f"{key}: {status_dicts[key]}")
-    sys.exit(0)
+    raise
 
 print(f"File size: {total_size}")
 for key in sorted(status_dicts.keys()):
