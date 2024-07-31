@@ -1,4 +1,9 @@
-def validUTF8(data):
+#!/usr/bin/python3
+"""Contains the utf8 function """
+
+
+def validUTF8(data) -> bool:
+    """ A validate uft8 """
     # Number of bytes in the current UTF-8 character
     num_bytes = 0
 
