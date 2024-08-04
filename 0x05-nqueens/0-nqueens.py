@@ -3,10 +3,10 @@
 from sys import argv
 placedQueen = []
 solution = []
-N = argv[1]
-if N is None:
+if len(argv) == 1:
     print("Usage: nqueens N")
     exit(1)
+N = argv[1]
 try:
     N = int(N)
 except ValueError:
