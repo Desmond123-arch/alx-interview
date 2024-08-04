@@ -10,7 +10,7 @@ N = argv[1]
 try:
     N = int(N)
 except ValueError:
-    print("N must be a Number")
+    print("N must be a number")
     exit(1)
 if N < 4:
     print("N must be at least 4")
