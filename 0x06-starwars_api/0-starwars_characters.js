@@ -4,43 +4,52 @@
 const request = require('request');
 const process = require('process');
 
-function getPerson (url) {
+// Function to fetch data from a URL
+function fetchData (url, callback) {
   request(url, (error, response, body) => {
     if (error) {
-      console.error(`Error fetching person from ${url}:`, error);
+      console.error(`Error fetching data from ${url}:`, error.message);
+      callback(error);
       return;
     }
     try {
       const data = JSON.parse(body);
-      const person = data.name;
-      console.log(person);
+      callback(null, data);
     } catch (e) {
-      console.error(`Error parsing JSON from ${url}:`, e);
+      console.error(`Error parsing JSON from ${url}:`, e.message);
+      callback(e);
     }
   });
 }
 
-if (process.argv.length > 2) {
-  const id = process.argv[2];
-  const url = `https://swapi-api.alx-tools.com/api/films/${id}/`;
+function getCharacters (filmId) {
+  if (filmId > 2) {
+    const endpoint = `https://swapi-api.alx-tools.com/api/films/${filmId}/`;
 
-  request(url, (error, response, body) => {
-    if (error) {
-      console.error(`Error fetching film data from ${url}:`, error);
-      return;
-    }
+    fetchData(endpoint, (error, data) => {
+      if (error) return;
 
-    try {
-      const data = JSON.parse(body);
       const people = data.characters;
-
       if (people && Array.isArray(people)) {
-        people.forEach(getPerson);
+        people.forEach((characterUrl) => {
+          fetchData(characterUrl, (err, character) => {
+            if (err) return;
+            console.log(character.name);
+          });
+        });
       } else {
         console.error('Invalid data format for characters:', people);
       }
-    } catch (e) {
-      console.error('Error parsing JSON from film data:', e);
-    }
-  });
+    });
+  } else {
+    console.error('Invalid film ID:', filmId);
+  }
+}
+
+// Start the process with the film ID from command-line arguments
+const filmId = parseInt(process.argv[2], 10);
+if (isNaN(filmId)) {
+  console.error('Please provide a valid film ID.');
+} else {
+  getCharacters(filmId);
 }
