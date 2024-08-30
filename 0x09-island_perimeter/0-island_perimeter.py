@@ -1,10 +1,9 @@
 #!/usr/bin/python3
-from typing import List
 
 """ Contains the island_perimeter function """
 
 
-def island_perimeter(grid: List[List[int]]) -> int:
+def island_perimeter(grid) -> int:
     """Calculates the perimeter of an island."""
     if not grid or not grid[0]:
         return 0
